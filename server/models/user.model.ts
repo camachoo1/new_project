@@ -22,3 +22,7 @@ const userSchema: any = new Schema(
 );
 
 module.exports = mongoose.model('User', userSchema);
+
+// export class UserEntity {
+
+// }

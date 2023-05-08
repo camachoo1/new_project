@@ -5,7 +5,8 @@ import express from 'express';
 import session from 'express-session';
 import { getMongoClient } from '../DB';
 import { MongoClient } from "mongodb";
-const { mongoURI: db } = require('./config/keys');
+const { mongoURI: db } = require('../config/keys');
+// import { mongoURI as db } from '../config/keys';
 
 
 interface User {
@@ -23,7 +24,7 @@ export function setupPassport() {
         domain: `process.env.DOMAIN`,
         clientID: `process.env.CLIENT_ID`,
         clientSecret: `process.env.CLIENT_SECRET`,
-        callbackURL: '',
+        callbackURL: 'http://localhost:3001',
       },
       function (
         accessToken,

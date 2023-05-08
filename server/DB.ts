@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-const {mongoURI: db} = require('./config/keys')
 
 const primaryConnection = mongoose.createConnection(
-  db
+  'mongodb+srv://admin:gaI6Fzp2KeTzeIo3@music-mern.hn5ufbn.mongodb.net/?retryWrites=true&w=majority'
 );
 
 primaryConnection.on('connected', () => {
