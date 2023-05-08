@@ -8,17 +8,16 @@ import { MongoClient } from 'mongodb';
 import { UserDocument } from '../src/models/user.model';
 import { config } from '../src/config';
 const { mongoURI: db } = require('../config/keys');
-// import { mongoURI as db } from '../config/keys';
 
 export function setupPassport() {
   passport.use(
     'auth0',
     new Auth0Strategy(
       {
-        domain: `process.env.DOMAIN`,
-        clientID: `process.env.CLIENT_ID`,
-        clientSecret: `process.env.CLIENT_SECRET`,
-        callbackURL: 'http://localhost:3001/auth/callback',
+        domain: `config.auth0.domain`,
+        clientID: `config.auth0.clientID`,
+        clientSecret: `config.auth0.clientSecret`,
+        callbackURL: `config.auth0.callbackURL`,
       },
       function (
         accessToken,
