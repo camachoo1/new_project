@@ -56,8 +56,8 @@ export function createAccountForAuth0(
 export function setupPassportSession(app: express.Application) {
   app.use(
     session({
-      secret: config.jwt.secretKey,
-      name: '',
+      secret: `config.jwt.secretKey`,
+      // name: '',
       resave: false,
       saveUninitialized: false,
       store: MongoStore.create({
