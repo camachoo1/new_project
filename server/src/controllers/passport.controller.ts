@@ -3,7 +3,7 @@ import passport from 'passport';
 import { UserDocument } from '../models/user.model';
 import { createAccountForAuth0 } from '../utils/auth0.utils';
 
-const { mongoURI: db } = require('../config/keys');
+const { mongoURI: db } = require('../../config/keys');
 
 // Export a function called `setupPassport`
 export function setupPassport() {
