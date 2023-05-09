@@ -14,6 +14,7 @@ interface ConfigOptions {
   mongodb_uri: string | undefined;
   auth0: Auth0Options;
   jwt: JwtOptions;
+  isProduction: boolean;
 }
 
 export const config: ConfigOptions = {
@@ -27,5 +28,6 @@ export const config: ConfigOptions = {
   jwt: {
     secretKey: process.env.JWT_SECRET,
     expiresIn: '1h'
-  }
+  },
+  isProduction: process.env.NODE_ENV === 'production'
 }
