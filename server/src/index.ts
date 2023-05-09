@@ -1,7 +1,7 @@
-import { waitForMongoConnection } from './db';
-import { setupPassportSession } from '../auth';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { waitForMongoConnection } from './db';
+import { setupPassportSession } from './services/passport.service';
 
 dotenv.config();
 
