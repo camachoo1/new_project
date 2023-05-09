@@ -2,6 +2,7 @@ import { Strategy as Auth0Strategy, Profile } from 'passport-auth0';
 import passport from 'passport';
 import { User } from '../models/user.model';
 import { createAccountForAuth0 } from '../utils/auth0.utils';
+import { config } from '../config';
 
 const { mongoURI: db } = require('../../config/keys');
 
@@ -13,10 +14,10 @@ export function setupPassport() {
     new Auth0Strategy(
       // The first parameter is an object that contains configuration options for the Auth0Strategy.
       {
-        domain: `config.auth0.domain`, // This is the Auth0 domain.
-        clientID: `config.auth0.clientID`, // This is the Auth0 client ID.
-        clientSecret: `config.auth0.clientSecret`, // This is the Auth0 client secret.
-        callbackURL: `config.auth0.callbackURL`, // This is the callback URL that Auth0 will redirect to after authentication.
+        domain: config.auth0.domain, // This is the Auth0 domain.
+        clientID: config.auth0.clientId, // This is the Auth0 client ID.
+        clientSecret: config.auth0.clientSecret, // This is the Auth0 client secret.
+        callbackURL: config.auth0.callbackURL, // This is the callback URL that Auth0 will redirect to after authentication.
       },
 
       // The second parameter is a callback function that handles the result of the authentication.

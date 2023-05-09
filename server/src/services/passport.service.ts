@@ -5,13 +5,14 @@ import { getMongoClient } from '../db';
 import { MongoClient } from 'mongodb';
 import passport from 'passport'
 import { setupPassport } from '../controllers/passport.controller';
+import { config } from '../config';
 
 // The function sets up the Passport.js user session by creating a session middleware and configuring it to store user data in MongoDB.
 export function setupPassportSession(app: express.Application) {
   // Configuring the session middleware using the 'session' function provided by the 'express-session' package.
   app.use(
     session({
-      secret: `config.jwt.secretKey`, // A string used to sign and verify session IDs stored in cookies. This value should be kept secret.
+      secret: config.jwt.secretKey, // A string used to sign and verify session IDs stored in cookies. This value should be kept secret.
       resave: false, // If true, session data will be saved on every request. Setting this to false optimizes performance.
       saveUninitialized: false, // Saves sessions in the database only if there is data to be saved.
       store: MongoStore.create({
