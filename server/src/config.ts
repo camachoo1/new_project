@@ -17,7 +17,7 @@ interface ConfigOptions {
 }
 
 export const config: ConfigOptions = {
-  mongodb_uri: process.env.MONGO_URI,
+  mongodb_uri: process.env.MONGODB_URI,
   auth0: {
     domain: process.env.AUTH0_DOMAIN,
     clientId: process.env.AUTH0_CLIENT_ID,
