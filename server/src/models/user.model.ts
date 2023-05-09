@@ -15,7 +15,7 @@ import bcrypt from 'bcrypt'
 })
 
 // This is a User class that defines the shape of a User object in our database.
-// The @prop decorator is used to define properties on the User object, along with validation constraints.
+// The prop decorator is used to define properties on the User object, along with validation constraints.
 export class User {
   @prop({ required: true }) // Use the "prop" decorator to define a required property on the User object.
   autho0Id!: string;
