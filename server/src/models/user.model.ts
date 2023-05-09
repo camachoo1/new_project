@@ -1,4 +1,3 @@
-// import necessary modules from Typegoose
 import { pre, prop, getModelForClass } from '@typegoose/typegoose';
 import bcrypt from 'bcrypt'
 // This is a Mongoose "pre" middleware function that hashes the user's password before saving it to the database.
