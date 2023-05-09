@@ -1,4 +1,22 @@
-export const config = {
+interface Auth0Options {
+  domain: string | undefined;
+  clientId: string | undefined;
+  clientSecret: string | undefined;
+  callbackURL: string | undefined;
+}
+
+interface JwtOptions {
+  secretKey: string | undefined;
+  expiresIn: string;
+}
+
+interface ConfigOptions {
+  mongodb_uri: string | undefined;
+  auth0: Auth0Options;
+  jwt: JwtOptions;
+}
+
+export const config: ConfigOptions = {
   mongodb_uri: process.env.MONGO_URI,
   auth0: {
     domain: process.env.AUTH0_DOMAIN,

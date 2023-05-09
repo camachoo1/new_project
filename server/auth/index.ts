@@ -1,6 +1,6 @@
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
-import Auth0Strategy, { Profile } from 'passport-auth0';
+import {Strategy as Auth0Strategy, Profile } from 'passport-auth0';
 import express from 'express';
 import session from 'express-session';
 import { getMongoClient } from '../src/db';
