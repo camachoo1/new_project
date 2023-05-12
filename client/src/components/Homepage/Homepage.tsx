@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './Homepage.css'
 import aos from 'aos'
 import 'aos/dist/aos.css'
+import { GitHub, LinkedIn, Info } from '@mui/icons-material'
 
 interface HomepageProps {}
 
@@ -25,7 +26,7 @@ const Homepage: React.FC<HomepageProps> = () => {
               rel='noreferrer'
               className='homepage__links'
             >
-              Github
+              <GitHub />
             </a>
             <a
               href='https://linkedin.com/in/omar-camacho-aa01b3133'
@@ -33,7 +34,7 @@ const Homepage: React.FC<HomepageProps> = () => {
               rel='noreferrer'
               className='homepage__links'
             >
-              LinkedIn
+              <LinkedIn />
             </a>
             <a
               href='https://camachoo1.github.io/'
@@ -41,7 +42,7 @@ const Homepage: React.FC<HomepageProps> = () => {
               rel='noreferrer'
               className='homepage__links'
             >
-              Portfolio
+              <Info />
             </a>
           </div>
           <div className='nav__right'>
@@ -53,13 +54,10 @@ const Homepage: React.FC<HomepageProps> = () => {
 
         <section data-aos='fade-right' data-aos-duration='1000' className='section__1'>
           <h1 className='homepage__main__heading'>
-            IMAGINE A PLACE...
+            New Project
           </h1>
           <p>
-            ...where you can belong to a school club, a gaming group,
-            or a worldwide art community. Where just you and a handful
-            of friends can spend time together. A place that makes it
-            easy to talk every day and hang out more often.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi optio vitae similique fugiat veritatis dolor sed nihil, fugit tenetur quidem eos accusamus, beatae suscipit, esse nulla sapiente corrupti repellendus eligendi?
           </p>
           <button
             className='homepage__button open__button'
