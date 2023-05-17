@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import {config} from './config'
 
 // Create a primary connection to MongoDB using the Mongoose library
 const primaryConnection: mongoose.Connection =
   mongoose.createConnection(
-    'mongodb+srv://admin:gaI6Fzp2KeTzeIo3@music-mern.hn5ufbn.mongodb.net/?retryWrites=true&w=majority'
+    config.mongodb_uri
   );
 
 // Listen for the 'connected' event and log a message to the console when it occurs
