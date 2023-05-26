@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export const config = {
-  mongodb_uri: String(process.env.MONGO_URI),
+  mongodb_uri: String(process.env.MONGODB_URI),
   auth0: {
     domain: String(process.env.AUTH0_DOMAIN),
     clientId: String(process.env.AUTH0_CLIENT_ID),

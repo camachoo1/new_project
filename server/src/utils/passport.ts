@@ -1,7 +1,7 @@
 import { Strategy as Auth0Strategy, Profile } from 'passport-auth0';
 import passport from 'passport';
-import { User } from '../models/user.model';
-import { createAccountForAuth0 } from '../utils/auth0.utils';
+import { User } from '../users/user.model';
+import { createAccountForAuth0 } from '../auth/auth0.utils';
 import { config } from '../config';
 
 const { mongoURI: db } = require('../../config/keys');

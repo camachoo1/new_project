@@ -18,7 +18,7 @@ import bcrypt from 'bcrypt'
 // The prop decorator is used to define properties on the User object, along with validation constraints.
 export class User {
   @prop({ required: true }) // Use the "prop" decorator to define a required property on the User object.
-  autho0Id!: string;
+  authZeroUserId!: string;
 
   @prop({ required: true, unique: true }) // Use the "prop" decorator to define a required and unique property on the User object.
   email!: string;
@@ -52,7 +52,7 @@ export const UserDocument = getModelForClass(User);
 // // Define the structure of a User document and its validation constraints
 // const UserSchema = new Schema({
 //   // An auth0 ID is required to uniquely identify a user
-//   auth0Id: {
+//   authZeroId: {
 //     type: String,
 //     required: true
 //   },

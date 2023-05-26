@@ -1,7 +1,6 @@
-import { User } from '../models/user.model'
+import { User } from '../users/user.model';
 import { Profile } from 'passport-auth0';
-const { mongoURI: db } = require('../../config/keys')
-
+const { mongoURI: db } = require('../../config/keys');
 
 // This function takes a `Profile` object as input and creates a new user account document for it in the database
 export function createAccountForAuth0(

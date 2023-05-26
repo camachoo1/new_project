@@ -1,10 +1,10 @@
-import express from 'express'
-import session from 'express-session'
+import express from 'express';
+import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { getMongoClient } from '../db';
 import { MongoClient } from 'mongodb';
-import passport from 'passport'
-import { setupPassport } from '../controllers/passport.controller';
+import passport from 'passport';
+import { setupPassport } from './passport';
 import { config } from '../config';
 
 // The function sets up the Passport.js user session by creating a session middleware and configuring it to store user data in MongoDB.

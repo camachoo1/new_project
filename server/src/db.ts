@@ -1,22 +1,20 @@
 import mongoose from 'mongoose';
-import {config} from './config'
+import { config } from './config';
 
 // Create a primary connection to MongoDB using the Mongoose library
 const primaryConnection: mongoose.Connection =
-  mongoose.createConnection(
-    config.mongodb_uri
-  );
+  mongoose.createConnection(config.mongodb_uri);
 
 // Listen for the 'connected' event and log a message to the console when it occurs
 primaryConnection.on('connected', () => {
-  console.log(`Connected to MongoDB`)
-})
+  console.log(`Connected to MongoDB`);
+});
 
 /**
  * Returns a promise that resolves when the primary MongoDB connection is established
  */
 export async function waitForMongoConnection() {
-  return primaryConnection.asPromise()
+  return primaryConnection.asPromise();
 }
 
 /**
