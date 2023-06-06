@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { User, UserDocument } from '../users/user.model';
+import { UserDocument, UserModel } from '../users/user.model';
 import { getMongoClient } from '../db';
 
 
@@ -25,7 +25,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       return res.status(400).json({message: 'User already exists',})
     }
 
-    const newUser = new UserDocument({
+    const newUser = new UserModel({
       email,
       username,
       password: hash

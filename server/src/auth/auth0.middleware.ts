@@ -1,6 +1,7 @@
 import passport from 'passport';
 import express from 'express';
-import { User } from '../users/user.model';
+import { UserModel, UserDocument  } from '../users/user.model';
+
 
 // Define a login route handler function that authenticates the user using the Auth0 strategy
 export function handleLogin(
@@ -10,7 +11,7 @@ export function handleLogin(
 ) {
   passport.authenticate(
     'auth0',
-    function (err: any, user: User, info: any) {
+    function (err: any, user: UserDocument, info: any) {
       if (err) {
         return next(err);
       }

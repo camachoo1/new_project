@@ -1,15 +1,18 @@
 import express from 'express'
-import passport from 'passport'
-import { handleLogin } from './auth0.middleware'
+import passport, { authenticate } from 'passport'
 import { register } from './auth0.controller'
 
 const router = express.Router()
 
-router.get('/auth/auth0/callback', passport.authenticate('auth0', {
-  failureRedirect: '/login'
-}), (req, res, next) => {
-  res.redirect('/')
-})
+router.get('/auth0', passport.authenticate('auth0'));
+
+router.get(
+  '/auth0/callback',
+  passport.authenticate('auth0', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
 
 router.post('/register', register)
 

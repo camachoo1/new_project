@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { config } from './config';
+import { UserModel } from './users/user.model';
 
 // Create a primary connection to MongoDB using the Mongoose library
 const primaryConnection: mongoose.Connection =
@@ -24,4 +25,19 @@ export async function getMongoClient() {
   // Wait for the primary MongoDB connection to be established before getting the client object
   const connection = await waitForMongoConnection();
   return connection.getClient();
+}
+
+export async function createUserCollection() {
+  const client = await getMongoClient();
+  const db = client.db()
+
+  const collections = await db.listCollections({
+    name: 'users'
+  }).toArray();
+
+  if (collections.length === 0) { 
+    await db.createCollection('users')
+    await UserModel.syncIndexes()
+  }
+  client.close()
 }
