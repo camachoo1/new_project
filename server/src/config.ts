@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export const config = {
+  PORT: process.env.PORT as string,
   mongodb_uri: process.env.MONGODB_URI as string,
   auth0: {
     domain: process.env.AUTH0_DOMAIN as string,

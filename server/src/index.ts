@@ -12,7 +12,7 @@ import authRouter from './auth/auth0.router';
 dotenv.config();
 
 // Initialize the Express application
-const PORT = process.env.PORT || 3001;
+const PORT = config.PORT || 5001;
 const app = express();
 
 // Enable Cross-Origin Resource Sharing (CORS) and JSON parsing middleware

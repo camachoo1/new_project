@@ -5,7 +5,7 @@ const { mongoURI: db } = require('../../config/keys');
 // This function takes a `Profile` object as input and creates a new user account document for it in the database
 
 export async function createAccountForAuth0(
-  profile: any
+  profile: Profile
 ): Promise<UserDocument> {
   try {
     const user = await UserModel.findOne({ auth0Id: profile.id });

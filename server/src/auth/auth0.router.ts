@@ -1,6 +1,6 @@
 import express from 'express'
 import passport, { authenticate } from 'passport'
-import { register } from './auth0.controller'
+
 
 const router = express.Router()
 
@@ -14,6 +14,6 @@ router.get(
   })
 );
 
-router.post('/register', register)
+
 
 export default router

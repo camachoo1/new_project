@@ -5,7 +5,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface UserDocument extends Document {
   auth0Id: string;
   email: string;
-  username: string
+  password: string
 }
 
 // Define the structure of a User document and its validation constraints
@@ -22,10 +22,10 @@ const UserSchema = new Schema({
     unique: true
   },
   // A username is required and must be unique
-  username: {
+  password: {
     type: String,
     required: true,
-    unique: true
+    // unique: true
   }
 })
 
