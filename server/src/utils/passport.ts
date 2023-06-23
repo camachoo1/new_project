@@ -17,7 +17,7 @@ export function setupPassport() {
         callbackURL: process.env.AUTH0_CALLBACK_URL as string,
         state: false,
       },
-      function (
+      async function (
         accessToken,
         refreshToken,
         extraParams,
@@ -25,27 +25,12 @@ export function setupPassport() {
         done
       ) {
         // Look up a user in the database based on their Auth0 user ID (`profile.id`).
-        UserModel.findOne({ auth0Id: profile.id })
-          .then((user) => {
-            if (user) {
-              // User found, pass it to the next `.then()` block
-              return user;
-            } else {
-              // Create a new user document
-              const newUser: UserDocument = new UserModel({
-                auth0Id: profile.id,
-                email:
-                  profile.emails && profile.emails[0]
-                    ? profile.emails[0].value
-                    : '',
-                username: profile.displayName,
-              });
-              // Save the new user document
-              return newUser.save();
-            }
-          })
-          .then((user: UserDocument) => done(null, user))
-          .catch((err: any) => done(err));
+        try {
+          const user = await createAccountForAuth0(profile)
+          done(null, user)
+        } catch (err) {
+          done(err)
+        }
       }
     )
   );

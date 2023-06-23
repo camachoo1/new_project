@@ -4,6 +4,7 @@ import aos from 'aos'
 import 'aos/dist/aos.css'
 import { GitHub, LinkedIn, Info } from '@mui/icons-material'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 
 
 const Homepage = () => {
@@ -11,11 +12,30 @@ const Homepage = () => {
     aos.init({duration: 600})
   }, [])
 
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const handleLogin = () => {
     loginWithRedirect();
   };
+
+  const handleProtectedRoute = async () => {
+    if (isAuthenticated) {
+
+      try {
+        const token = await getAccessTokenSilently();
+        const response = await axios.get('/auth/protected', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(response.data)
+      } catch (err) {
+        console.error(err)
+      }
+    } else {
+      console.log('User is not authenticated')
+    }
+  }
   return (
     <div className='home__wrapper'>
       <div className='section__1__container'>
@@ -66,6 +86,7 @@ const Homepage = () => {
           </p>
           <button
             className='homepage__button open__button'
+            onClick={handleProtectedRoute}
           >
             Open New Project
           </button>

@@ -1,10 +1,11 @@
 import express from 'express'
 import passport, { authenticate } from 'passport'
-
+import {expressjwt, Request as JWTRequest} from 'express-jwt'
+import { config } from '../config'
 
 const router = express.Router()
 
-router.get('/auth0', passport.authenticate('auth0'));
+router.get('/auth', passport.authenticate('auth0'));
 
 router.get(
   '/auth0/callback',
@@ -13,6 +14,14 @@ router.get(
     failureRedirect: '/login',
   })
 );
+
+router.get('/protected',expressjwt({secret: config.jwt.secretKey, algorithms: ['RS256'], audience: config.auth0.audience}), (req: JWTRequest, res: express.Response) => {
+  if (req.isAuthenticated()) {
+    res.send('You have access to the protected route')
+  } else {
+    res.send('You are not authenticated')
+  }
+})
 
 
 
