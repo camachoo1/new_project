@@ -3,10 +3,12 @@ import passport from 'passport';
 import { UserDocument, UserModel } from '../users/user.model';
 import { createAccountForAuth0 } from '../auth/auth0.utils';
 import { config } from '../config';
+import { logger } from '..';
 
 
 
 export function setupPassport() {
+  logger.info('Setting up passport')
   passport.use(
     'auth0',
     new Auth0Strategy(

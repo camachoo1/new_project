@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import { setupPassport } from './passport';
 import { UserDocument, UserModel } from '../users/user.model';
 import mongoose from 'mongoose';
+import { logger } from '..';
 
 export function setupPassportSession(app: express.Application) {
   app.use(
@@ -25,6 +26,7 @@ export function setupPassportSession(app: express.Application) {
   app.use(passport.session());
 
   setupPassport();
+  logger.info('Passport session initialized')
 }
 
 passport.serializeUser(function (user: Partial<UserDocument>, done) {
