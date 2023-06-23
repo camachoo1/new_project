@@ -20,6 +20,9 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
+  name: {
+    type: String
+  },
 })
 
 // Creates a User model using the defined schema and exports it for use in other parts of the application

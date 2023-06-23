@@ -6,6 +6,8 @@ import { setupPassportSession } from './utils/passport.service';
 import { config } from './config';
 import authRouter from './auth/auth0.router';
 import mongoose from 'mongoose';
+import debug from 'debug'
+import winston from 'winston'
 
 
 // Load environment variables from .env file
@@ -20,16 +22,40 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+  logger.info('Middleware logger test'); // Add this line
+  next();
+});
+
 app.use('/auth', authRouter)
+
+const debugLogger = debug('app:debug')
+debugLogger.enabled = process.env.DEBUG === 'true'
+
+export const logger = winston.createLogger({
+  level: 'debug',
+  transports: [
+    new winston.transports.Console()
+  ]
+})
+
+logger.debug('Debug Message')
+logger.info('Info Message')
+logger.warn('Warn Message')
+logger.error('Error Message')
 
 // Start the server and set up Passport session
 async function startServer() {
   await mongoose.connect(config.mongodb_uri)
+  console.log('Connected to MongoDB')
   app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+    debugLogger(`Server listening on ${PORT}`);
   });
   setupPassportSession(app);
 }
 
 // Call the main function to start the server
-startServer().catch((err) => console.error(err));
+startServer().catch((err) => {
+  debugLogger('Error starting server:', err)
+  logger.error('Error starting server:', err)
+});
