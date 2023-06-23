@@ -2,10 +2,10 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
-import { createUserCollection, waitForMongoConnection } from './db';
 import { setupPassportSession } from './utils/passport.service';
 import { config } from './config';
 import authRouter from './auth/auth0.router';
+import mongoose from 'mongoose';
 
 
 // Load environment variables from .env file
@@ -24,8 +24,7 @@ app.use('/auth', authRouter)
 
 // Start the server and set up Passport session
 async function startServer() {
-  await waitForMongoConnection();
-  await createUserCollection()
+  await mongoose.connect(config.mongodb_uri)
   app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
   });

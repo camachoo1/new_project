@@ -19,7 +19,6 @@ export async function createAccountForAuth0(
           profile.emails && profile.emails[0]
             ? profile.emails[0].value
             : '',
-        username: profile.displayName,
       });
 
       return newUser.save();

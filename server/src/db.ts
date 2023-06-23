@@ -14,30 +14,15 @@ primaryConnection.on('connected', () => {
 /**
  * Returns a promise that resolves when the primary MongoDB connection is established
  */
-export async function waitForMongoConnection() {
-  return primaryConnection.asPromise();
-}
+// export async function waitForMongoConnection() {
+//   return primaryConnection.asPromise();
+// }
 
-/**
- * Returns a MongoClient object that can be used to interact with the primary MongoDB database
- */
-export async function getMongoClient() {
-  // Wait for the primary MongoDB connection to be established before getting the client object
-  const connection = await waitForMongoConnection();
-  return connection.getClient();
-}
-
-export async function createUserCollection() {
-  const client = await getMongoClient();
-  const db = client.db()
-
-  const collections = await db.listCollections({
-    name: 'users'
-  }).toArray();
-
-  if (collections.length === 0) { 
-    await db.createCollection('users')
-    await UserModel.syncIndexes()
-  }
-  client.close()
-}
+// /**
+//  * Returns a MongoClient object that can be used to interact with the primary MongoDB database
+//  */
+// export async function getMongoClient() {
+//   // Wait for the primary MongoDB connection to be established before getting the client object
+//   const connection = await waitForMongoConnection();
+//   return connection.getClient();
+// }

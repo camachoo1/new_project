@@ -1,11 +1,10 @@
-
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Types } from 'mongoose';
 
 // Define the properties that can be used to create or update a User document
 export interface UserDocument extends Document {
   auth0Id: string;
   email: string;
-  password: string
+  _id: Types.ObjectId
 }
 
 // Define the structure of a User document and its validation constraints
@@ -21,12 +20,6 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
-  // A username is required and must be unique
-  password: {
-    type: String,
-    required: true,
-    // unique: true
-  }
 })
 
 // Creates a User model using the defined schema and exports it for use in other parts of the application

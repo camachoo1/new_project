@@ -5,9 +5,8 @@ import 'aos/dist/aos.css'
 import { GitHub, LinkedIn, Info } from '@mui/icons-material'
 import { useAuth0 } from '@auth0/auth0-react'
 
-interface HomepageProps {}
 
-const Homepage: React.FC<HomepageProps> = () => {
+const Homepage = () => {
   useEffect(() => {
     aos.init({duration: 600})
   }, [])
