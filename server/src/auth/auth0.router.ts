@@ -10,7 +10,7 @@ router.get('/auth', passport.authenticate('auth0', {scope: 'openid email profile
 router.get(
   '/auth0/callback',
   passport.authenticate('auth0', {
-    successRedirect: '/protected',
+    successRedirect: '/',
     failureRedirect: '/login',
   })
 );

@@ -7,15 +7,31 @@ import { setupPassportSession } from './utils/passport.service';
 import passport from 'passport'
 import authRouter from './auth/auth0.router'
 import cookieParser from 'cookie-parser'
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 // Initialize the Express application
-const PORT = config.PORT || 5001;
+const PORT = config.PORT;
 const app = express();
 
 // Enable Cross-Origin Resource Sharing (CORS) and JSON parsing middleware
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
+app.use(
+  session({
+    secret: config.jwt.secretKey,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 60 * 60 * 1000
+    },
+    rolling: true,
+    store: MongoStore.create({
+      mongoUrl: config.mongodb_uri
+    })
+  })
+)
 
 // Set up Passport session
 setupPassportSession(app);
