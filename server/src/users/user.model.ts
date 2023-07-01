@@ -4,6 +4,8 @@ import mongoose, { Schema, Document, Types } from 'mongoose';
 export interface UserDocument extends Document {
   auth0Id: string;
   email: string;
+  name: string;
+  picture: string;
   _id: Types.ObjectId
 }
 
@@ -12,7 +14,8 @@ const UserSchema = new Schema({
   // An auth0 ID is required to uniquely identify a user
   auth0Id: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   // An email address is required and must be unique
   email: {
@@ -21,8 +24,13 @@ const UserSchema = new Schema({
     unique: true
   },
   name: {
-    type: String
+    type: String,
+    required: true
   },
+  photo: {
+    type: String,
+    required: false
+  }
 })
 
 // Creates a User model using the defined schema and exports it for use in other parts of the application

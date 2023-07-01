@@ -3,12 +3,10 @@ import passport from 'passport';
 import { UserDocument, UserModel } from '../users/user.model';
 import { createAccountForAuth0 } from '../auth/auth0.utils';
 import { config } from '../config';
-import { logger } from '..';
 
 
 
 export function setupPassport() {
-  logger.info('Setting up passport')
   passport.use(
     'auth0',
     new Auth0Strategy(
@@ -17,7 +15,6 @@ export function setupPassport() {
         clientID: process.env.AUTH0_CLIENT_ID as string,
         clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
         callbackURL: process.env.AUTH0_CALLBACK_URL as string,
-        state: false,
       },
       async function (
         accessToken,

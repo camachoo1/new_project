@@ -1,4 +1,3 @@
-import { logger } from '..';
 import { UserDocument, UserModel } from '../users/user.model';
 import { Profile } from 'passport-auth0';
 
@@ -9,7 +8,7 @@ export async function createAccountForAuth0(
 ): Promise<UserDocument> {
   try {
     const user = await UserModel.findOne({ auth0Id: profile.id });
-
+    console.log(profile, user)
     if (user) {
       return user;
     } else {
@@ -19,9 +18,15 @@ export async function createAccountForAuth0(
           profile.emails && profile.emails[0]
             ? profile.emails[0].value
             : '',
-        name: profile.displayName,
+        name: profile._json.name,
+        photo: profile._json.picture,
       });
-      logger.debug('New user:', newUser);
+      // Ensure that the `auth0Id` and `email` fields are not empty
+      if (!newUser.auth0Id || !newUser.email) {
+        console.log(profile)
+        throw new Error('Failed to create user account for Auth0');
+      }
+
       return newUser.save();
     }
   } catch (error) {
